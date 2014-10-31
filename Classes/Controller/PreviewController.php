@@ -17,13 +17,14 @@ namespace Visol\Workspacepreview\Controller;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Workspaces\Controller\AbstractController;
 
 /**
  * Implements the preview controller of the workspace module.
  *
  * @author Workspaces Team (http://forge.typo3.org/projects/show/typo3v4-workspaces)
  */
-class PreviewController extends \TYPO3\CMS\Workspaces\Controller\AbstractController {
+class PreviewController extends AbstractController {
 
 	/**
 	 * @var \TYPO3\CMS\Workspaces\Service\StagesService
@@ -59,7 +60,7 @@ class PreviewController extends \TYPO3\CMS\Workspaces\Controller\AbstractControl
 		$this->pageRenderer->addJsFile($this->backPath . 'sysext/backend/Resources/Public/JavaScript/notifications.js');
 		$this->pageRenderer->addJsFile($this->backPath . 'sysext/backend/Resources/Public/JavaScript/flashmessages.js');
 		$this->pageRenderer->addJsFile($this->backPath . 'sysext/backend/Resources/Public/JavaScript/iframepanel.js');
-		$resourcePathJavaScript = ExtensionManagementUtility::extRelPath('workspaces') . 'Resources/Public/JavaScript/';
+		$resourcePathJavaScript = ExtensionManagementUtility::extRelPath('workspacepreview') . 'Resources/Public/JavaScript/';
 		$jsFiles = array(
 			'Ext.ux.plugins.TabStripContainer.js',
 			'Store/mainstore.js',
