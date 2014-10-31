@@ -132,7 +132,6 @@ TYPO3.Workspaces.Actions = {
 		});
 	},
 	sendToStageWindow: function(response, selection) {
-		alert('HIEr');
 		if (Ext.isObject(response.error)) {
 			TYPO3.Workspaces.Actions.handlerResponseOnExecuteAction(response);
 		} else {
