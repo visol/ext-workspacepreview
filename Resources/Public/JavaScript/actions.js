@@ -237,12 +237,14 @@ TYPO3.Workspaces.Actions = {
 	 */
 	sendPageToNextStage: function () {
 		TYPO3.Workspaces.ExtDirectActions.sendPageToNextStage(TYPO3.settings.Workspaces.id, function (response) {
+
 			if (Ext.isObject(response.error)) {
 				TYPO3.Workspaces.Actions.handlerResponseOnExecuteAction(response);
 			} else {
+				var items = [response.items.items[0]];
 				var dialog = TYPO3.Workspaces.Helpers.getSendToStageWindow({
 					title: TYPO3.l10n.localize('nextStage'),
-					items: response.items.items,
+					items: items,
 					executeHandler: function(event) {
 						var values = top.Ext.getCmp('sendToStageForm').getForm().getValues();
 						affects = response.affects;
