@@ -1,9 +1,9 @@
 <!-- ###FULLDOC### begin -->
 <f:render section="main" />
 <script type="text/javascript">
-	var liveUrl = '{liveUrl}';
-	var wsUrl = '{wsUrl}';
-	var wsSettingsUrl = '{wsSettingsUrl}';
+	var liveUrl = '{liveUrl -> f:format.raw()}';
+	var wsUrl = '{wsUrl -> f:format.raw()}';
+	var wsSettingsUrl = '{wsSettingsUrl -> f:format.raw()}';
 	document.domain = '{backendDomain}';
 
 	function resize(height) {
