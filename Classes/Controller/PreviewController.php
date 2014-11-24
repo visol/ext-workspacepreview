@@ -46,7 +46,8 @@ class PreviewController extends AbstractController {
 		$this->stageService = GeneralUtility::makeInstance('TYPO3\\CMS\\Workspaces\\Service\\StagesService');
 		$this->workspaceService = GeneralUtility::makeInstance('TYPO3\\CMS\\Workspaces\\Service\\WorkspaceService');
 		$this->template->setExtDirectStateProvider();
-		$resourcePath = ExtensionManagementUtility::extRelPath('workspaces') . 'Resources/Public/StyleSheet/preview.css';
+		$resourcePath = ExtensionManagementUtility::extRelPath('workspacepreview') .
+			'Resources/Public/StyleSheet/preview.css';
 		$GLOBALS['TBE_STYLES']['extJS']['theme'] = $resourcePath;
 		$this->pageRenderer->loadExtJS();
 		$this->pageRenderer->enableExtJSQuickTips();
@@ -60,7 +61,8 @@ class PreviewController extends AbstractController {
 		$this->pageRenderer->addJsFile($this->backPath . 'sysext/backend/Resources/Public/JavaScript/notifications.js');
 		$this->pageRenderer->addJsFile($this->backPath . 'sysext/backend/Resources/Public/JavaScript/flashmessages.js');
 		$this->pageRenderer->addJsFile($this->backPath . 'sysext/backend/Resources/Public/JavaScript/iframepanel.js');
-		$resourcePathJavaScript = ExtensionManagementUtility::extRelPath('workspacepreview') . 'Resources/Public/JavaScript/';
+		$resourcePathJavaScript = ExtensionManagementUtility::extRelPath('workspacepreview') .
+			'Resources/Public/JavaScript/';
 		$jsFiles = array(
 			'Ext.ux.plugins.TabStripContainer.js',
 			'Store/mainstore.js',

@@ -259,11 +259,12 @@ TYPO3.Workspaces.Actions = {
 							TYPO3.Workspaces.Actions.handlerResponseOnExecuteAction(response);
 							TYPO3.Workspaces.ExtDirectActions.updateStageChangeButtons(TYPO3.settings.Workspaces.id, TYPO3.Workspaces.Actions.updateStageChangeButtons);
 
-							if (response.refreshLivePanel == true) {
-								Ext.getCmp('livePanel').refresh();
-								Ext.getCmp('livePanel-hbox').refresh();
-								Ext.getCmp('livePanel-vbox').refresh();
-							}
+							location.href = liveUrl;
+							//if (response.refreshLivePanel == true) {
+							//	Ext.getCmp('livePanel').refresh();
+							//	Ext.getCmp('visualPanel-hbox').refresh();
+							//	Ext.getCmp('visualPanel-vbox').refresh();
+							//}
 						});
 						top.TYPO3.Windows.close('sendToStageWindow');
 					}
@@ -366,9 +367,10 @@ TYPO3.Workspaces.Actions = {
 					TYPO3.Workspaces.ExtDirectActions.discardStagesFromPage(TYPO3.settings.Workspaces.id, function (response) {
 						TYPO3.Workspaces.Actions.handlerResponseOnExecuteAction(response);
 						TYPO3.Workspaces.ExtDirectActions.updateStageChangeButtons(TYPO3.settings.Workspaces.id, TYPO3.Workspaces.Actions.updateStageChangeButtons);
-						Ext.getCmp('wsPanel').refresh();
-						Ext.getCmp('wsPanel-hbox').refresh();
-						Ext.getCmp('wsPanel-vbox').refresh();
+						location.href = liveUrl;
+						//Ext.getCmp('wsPanel').refresh();
+						//Ext.getCmp('wsPanel-hbox').refresh();
+						//Ext.getCmp('wsPanel-vbox').refresh();
 					});
 				}
 			}
