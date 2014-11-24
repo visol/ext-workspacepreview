@@ -367,9 +367,10 @@ TYPO3.Workspaces.Actions = {
 					TYPO3.Workspaces.ExtDirectActions.discardStagesFromPage(TYPO3.settings.Workspaces.id, function (response) {
 						TYPO3.Workspaces.Actions.handlerResponseOnExecuteAction(response);
 						TYPO3.Workspaces.ExtDirectActions.updateStageChangeButtons(TYPO3.settings.Workspaces.id, TYPO3.Workspaces.Actions.updateStageChangeButtons);
-						Ext.getCmp('wsPanel').refresh();
-						Ext.getCmp('wsPanel-hbox').refresh();
-						Ext.getCmp('wsPanel-vbox').refresh();
+						location.href = liveUrl;
+						//Ext.getCmp('wsPanel').refresh();
+						//Ext.getCmp('wsPanel-hbox').refresh();
+						//Ext.getCmp('wsPanel-vbox').refresh();
 					});
 				}
 			}
