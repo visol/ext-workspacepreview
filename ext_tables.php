@@ -11,7 +11,7 @@ if (TYPO3_MODE === 'BE' && !(TYPO3_REQUESTTYPE & TYPO3_REQUESTTYPE_INSTALL)) {
 		'before:info',
 		array(
 			// An array holding the controller-action-combinations that are accessible
-			'Preview' => 'index,publish'
+			'Preview' => 'index,newPage,publish'
 		),
 		array(
 			'access' => 'user,group',

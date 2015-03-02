@@ -122,7 +122,7 @@ class PreviewController extends AbstractController {
 		// branchpoints are not handled anymore because this feature is not supposed anymore
 		if (\TYPO3\CMS\Workspaces\Service\WorkspaceService::isNewPage($this->pageId)) {
 			$wsNewPageUri = $uriBuilder->uriFor('newPage', array(), 'Visol\\Workspacepreview\\Controller\\PreviewController', 'workspacepreview', 'web_workspacepreviewworkspacepreview');
-			$wsNewPageParams = '&tx_workspacepreview_web_workspacesworkspaces[controller]=Preview';
+			$wsNewPageParams = '&tx_workspacepreview_web_workspacepreviewworkspacepreview[controller]=Preview';
 			$this->view->assign('liveUrl', $wsSettingsPath . $wsNewPageUri . $wsNewPageParams);
 		} else {
 			$this->view->assign('liveUrl', $wsBaseUrl . '&ADMCMD_noBeUser=1');
