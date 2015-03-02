@@ -259,7 +259,18 @@ TYPO3.Workspaces.Actions = {
 							TYPO3.Workspaces.Actions.handlerResponseOnExecuteAction(response);
 							TYPO3.Workspaces.ExtDirectActions.updateStageChangeButtons(TYPO3.settings.Workspaces.id, TYPO3.Workspaces.Actions.updateStageChangeButtons);
 
-							location.href = liveUrl;
+							if (liveUrl.indexOf('newPage') > -1) {
+								// this page was not published before, so we must extract the page id and redirect
+								var queryString = {};
+								liveUrl.replace(
+									new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+									function($0, $1, $2, $3) { queryString[$1] = $3; }
+								);
+								location.href = '/index.php?id=' + queryString.id;
+							} else {
+								// this page is already visible in the frontend, therefore it is safe to redirect
+								location.href = liveUrl;
+							}
 							//if (response.refreshLivePanel == true) {
 							//	Ext.getCmp('livePanel').refresh();
 							//	Ext.getCmp('visualPanel-hbox').refresh();
