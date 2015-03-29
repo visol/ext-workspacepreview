@@ -112,7 +112,7 @@ TYPO3.Workspaces.Actions = {
 		TYPO3.Workspaces.ExtDirectActions.generateWorkspacePreviewLink(TYPO3.settings.Workspaces.id, function(response) {
 			top.TYPO3.Dialog.InformationDialog({
 				title: TYPO3.l10n.localize('previewLink'),
-				msg: String.format('<a href="{0}" target="_blank">{0}</a>', response)
+				msg: String.format('<input onclick="select();" style="margin-left: -47px; width: 500px;"type="text" value="{0}" />', response)
 			});
 		});
 	},

@@ -273,7 +273,7 @@ ul.x-tab-strip-top {
 .t3-icon-system-options-view {
 	float: right;
 }
-#feToolbarButtonNextStage.x-btn, #feToolbarButtonPreviousStage.x-btn, #feToolbarButtonDiscardStage.x-btn {
+#feToolbarButtonNextStage.x-btn, #feToolbarButtonPreviousStage.x-btn, #feToolbarButtonDiscardStage.x-btn, #feToolbarButtonPreviewLink.x-btn {
 	background-color: #B0DDA8;
 	background-image: url('../Images/button_approve.png');
 	background-position: bottom;
@@ -285,8 +285,9 @@ ul.x-tab-strip-top {
 	margin-right: 10px;
 	margin-top:0px;
 }
-#feToolbarButtonNextStage.x-btn .x-btn-text, #feToolbarButtonPreviousStage.x-btn .x-btn-text, #feToolbarButtonDiscardStage.x-btn .x-btn-text {
+#feToolbarButtonNextStage.x-btn .x-btn-text, #feToolbarButtonPreviousStage.x-btn .x-btn-text, #feToolbarButtonDiscardStage.x-btn .x-btn-text, #feToolbarButtonPreviewLink.x-btn .x-btn-text {
 	color: #FFF;
+	font-style: normal;
 	line-height: 8px;
 	height: 13px;
 	padding: 0 3px 0 3px;
@@ -302,6 +303,14 @@ ul.x-tab-strip-top {
 	background-image: url('../Images/button_discard.png');
 	background-color: #FA8686;
 }
+#feToolbarButtonPreviewLink.x-btn {
+	background-image: url('../Images/button_reject.png');
+	background-color: #F6F6F6;
+}
+#feToolbarButtonPreviewLink.x-btn .x-btn-text {
+	color: #000;
+}
+
 #sendToStageWindow .x-btn {
 	background-color: #d5d5d5;
 	background-image: url('../../../../../../typo3/sysext/t3skin/images/backgrounds/button.png');

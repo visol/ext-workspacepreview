@@ -207,7 +207,7 @@ Ext.onReady(function() {
 					}, {
 						xtype: 'buttongroup',
 						id: 'stageButtonGroup',
-						columns: 4,
+						columns: 5,
 						width: 400,
 						items: [{
 							text: TYPO3.l10n.localize('nextStage').substr(0, 35),
@@ -247,6 +247,19 @@ Ext.onReady(function() {
 								click: {
 									fn: function () {
 										TYPO3.Workspaces.Actions.discardPage();
+									}
+								}
+							}
+						}, {
+							text: TYPO3.l10n.localize('previewLink'),
+							iconCls: 'x-btn-text',
+							xtype: 'button',
+							id: 'feToolbarButtonPreviewLink',
+							hidden: TYPO3.settings.Workspaces.disablePreviewLinkButton,
+							listeners: {
+								click: {
+									fn: function () {
+										TYPO3.Workspaces.Actions.generateWorkspacePreviewLink();
 									}
 								}
 							}
