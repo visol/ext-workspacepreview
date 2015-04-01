@@ -1,0 +1,12 @@
+{
+	"name": "visol/workspacepreview",
+	"type": "typo3-cms-extension",
+	"description": "Simple Workspace Preview!",
+	"homepage": "https://github.com/visol/ext-workspacepreview",
+	"license": ["GPL-2.0+"],
+	"version": "1.0.1",
+	"keywords": ["TYPO3 CMS"],
+	"support": {
+		"issues": "https://github.com/visol/ext-workspacepreview/issues"
+	}
+}
