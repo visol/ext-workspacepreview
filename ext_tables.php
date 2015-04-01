@@ -25,6 +25,7 @@ if (TYPO3_MODE === 'BE' && !(TYPO3_REQUESTTYPE & TYPO3_REQUESTTYPE_INSTALL)) {
 
 		# Hide the module in the BE.
 		options.hideModules.web := addToList(WorkspacepreviewWorkspacepreview)
+		options.hideModules.web := addToList(WorkspacesWorkspaces)
 
 	');
 
