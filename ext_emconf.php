@@ -2,6 +2,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Simple Workspace Preview',
+	'description' => 'Light-weight Workspace Preview module to establish a self-publishing workflow',
 	'category' => 'be',
 	'shy' => 0,
 	'version' => '1.0.1',
