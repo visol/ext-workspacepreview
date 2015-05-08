@@ -1,5 +1,5 @@
 <?php
-namespace Visol\WorkspacePreview\Hook;
+namespace Visol\Workspacepreview\Hook;
 
 /**
  * This file is part of the TYPO3 CMS project.
