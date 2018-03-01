@@ -1,0 +1,19 @@
+
+# ==============================================
+# Persistence object mapping configuration
+# ==============================================
+
+module.tx_workspaces.view {
+    layoutRootPaths {
+        10 = EXT:workspaces/Resources/Private/Layouts/
+        20 = EXT:workspacepreview/Resources/Private/Layouts/
+    }
+    templateRootPaths {
+        10 = EXT:workspaces/Resources/Private/Templates/
+        20 = EXT:workspacepreview/Resources/Private/Templates/
+    }
+    partialRootPaths {
+        10 = EXT:workspaces/Resources/Private/Partials/
+        20 = EXT:workspacepreview/Resources/Private/Partials/
+    }
+}

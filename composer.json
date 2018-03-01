@@ -1,14 +1,19 @@
 {
 	"name": "visol/workspacepreview",
+	"description": "Light-weight Workspace Preview module to establish a self-publishing workflow",
 	"type": "typo3-cms-extension",
-	"description": "Simple Workspace Preview!",
-	"homepage": "https://github.com/visol/ext-workspacepreview",
-	"license": ["GPL-2.0+"],
 	"keywords": ["TYPO3 CMS"],
+	"homepage": "https://github.com/visol/ext-workspacepreview",
+	"license": "GPL-2.0+",
 	"support": {
 		"issues": "https://github.com/visol/ext-workspacepreview/issues"
 	},
 	"require": {
-		"typo3/cms-core": ">=6.2.0,<=7.99.99"
+		"typo3/cms-core": ">=8.7.0,<9.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Visol\\Workspacepreview\\": "Classes/"
+		}
 	}
 }

@@ -1,4 +1,4 @@
-Workspace Preview for TYPO3 CMS 6.2
+Workspace Preview for TYPO3 CMS 8.7
 ===================================
 
 Workspace Preview is an extension overriding the Workspace Preview shipped with the TYPO3 Core. Its intention is to provide a simple possibility for previewing a draft version of a page and provide buttons to immediately publish or discard the changes. This is inspired by the handling in TYPO3 Neos and allows implementing a "self-publishing" workflow for editors.

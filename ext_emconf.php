@@ -5,7 +5,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Light-weight Workspace Preview module to establish a self-publishing workflow',
 	'category' => 'be',
 	'shy' => 0,
-	'version' => '1.1.0',
+	'version' => '2.0.0-dev',
 	'priority' => '',
 	'loadOrder' => '',
 	'module' => '',
@@ -20,18 +20,20 @@ $EM_CONF[$_EXTKEY] = array(
 	'author_company' => 'visol digitale Dienstleistungen GmbH',
 	'CGLcompliance' => '',
 	'CGLcompliance_note' => '',
-	'constraints' => array(
-		'depends' => array(
-			'typo3' => '6.2.0-7.99.99',
-			'workspaces' => '6.2.0-7.99.99',
-		),
-		'conflicts' => array(
-		),
-		'suggests' => array(
-		),
-	),
-	'suggests' => array(
-	),
+    'constraints' =>
+        [
+            'depends' =>
+                [
+                    'typo3' => '8.7.0-8.7.999',
+                    'workspaces' => '8.7.0-8.7.999',
+                ],
+            'conflicts' =>
+                [],
+            'suggests' =>
+                [],
+        ],
+	'suggests' => [
+	],
 );
 
 ?>

@@ -3,24 +3,9 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2011-10-17T20:22:37Z" product-name="workspaces">
 		<header/>
 		<body>
-			<trans-unit id="window.sendToNextStageWindow.itemsWillBeSentTo" xml:space="preserve">
-				<source>Publish this page?</source>
-				<target>Diese Version veröffentlichen?</target>
-			</trans-unit>
-			<trans-unit id="stage_publish" xml:space="preserve">
-				<source></source>
-				<target></target>
-			</trans-unit>
-			<trans-unit id="publish_execute_action_option" xml:space="preserve">
+			<trans-unit id="actionSendToStage" xml:space="preserve">
 				<source>Publish</source>
 				<target>Veröffentlichen</target>
-			</trans-unit>
-			<trans-unit id="window.discardAll.message" xml:space="preserve">
-				<source>Discard all changes of current page?</source>
-				<target>Alle Änderungen auf dieser Seite verwerfen?</target>
-			</trans-unit>
-			<trans-unit id="window.discardAll.title" xml:space="preserve">
-				<target>Änderungen verwerfen</target>
 			</trans-unit>
 		</body>
 	</file>

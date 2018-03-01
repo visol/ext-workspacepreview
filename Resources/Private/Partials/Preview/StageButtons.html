@@ -1,0 +1,12 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:if condition="{enableNextStageButton}">
+	<input type="button" class="btn btn-sm btn-success" value="{f:translate(key: 'label_doaction_publish')}" data-stage-id="-20" data-action="send-to-publish-stage">
+</f:if>
+
+<f:if condition="{enableDiscardStageButton}">
+	<input type="button" class="btn btn-sm btn-danger" value="{f:translate(key: 'label_doaction_discard')}" data-action="discard">
+</f:if>
+
+<span class="tx-workspacepreview-previewlink-label">Preview Link: </span><input type="text" class="tx-workspacepreview-previewlink" data-action="copy-to-clipboard" value="{wsUrl}">
+</html>
