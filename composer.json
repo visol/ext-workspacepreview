@@ -4,9 +4,11 @@
 	"description": "Simple Workspace Preview!",
 	"homepage": "https://github.com/visol/ext-workspacepreview",
 	"license": ["GPL-2.0+"],
-	"version": "1.0.1",
 	"keywords": ["TYPO3 CMS"],
 	"support": {
 		"issues": "https://github.com/visol/ext-workspacepreview/issues"
+	},
+	"require": {
+		"typo3/cms-core": ">=6.2.0,<=7.99.99"
 	}
 }
