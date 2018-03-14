@@ -54,11 +54,6 @@ class WorkspaceSelectorToolbarItem extends \TYPO3\CMS\Workspaces\Backend\Toolbar
             }
         }
 
-        // Add the "Go to workspace module" link
-        // if there is at least one icon on top and if the access rights are there
-        if ($topItem !== null && $backendUser->check('modules', 'web_WorkspacesWorkspaces')) {
-            $view->assign('showLinkToModule', true);
-        }
         $view->assign('topItem', $topItem);
         $view->assign('additionalItems', $additionalItems);
         return $view->render();
