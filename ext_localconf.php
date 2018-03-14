@@ -1,6 +1,9 @@
 <?php
 defined('TYPO3_MODE') or die();
 
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Workspaces\Backend\ToolbarItems\WorkspaceSelectorToolbarItem::class] = [
+    'className' => Visol\Workspacepreview\Backend\ToolbarItems\WorkspaceSelectorToolbarItem::class
+];
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Workspaces\Controller\Remote\ActionHandler::class] = [
     'className' => Visol\Workspacepreview\Controller\Remote\ActionHandler::class
 ];
