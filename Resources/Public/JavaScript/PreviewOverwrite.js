@@ -18,22 +18,25 @@
 define([
   'jquery',
   'TYPO3/CMS/Workspaces/Workspaces',
-  'TYPO3/CMS/Workspaces/Preview',
-], function($, Workspaces, Preview) {
+  'TYPO3/CMS/Backend/Severity',
+  'TYPO3/CMS/Backend/Modal',
+], function($, Workspaces, Severity, Modal) {
   'use strict';
 
   var PreviewOverwrite = {
     identifiers: {
+      stageButtonsContainer: '.t3js-stage-buttons',
       sendToPublishStageAction: '[data-action="send-to-publish-stage"]',
       copyToClipboard: '[data-action="copy-to-clipboard"]',
-    }
+    },
+    elements: {}
   };
 
   /**
    * Initializes the preview module
    */
   PreviewOverwrite.initialize = function() {
-      PreviewOverwrite.registerEvents();
+    PreviewOverwrite.registerEvents();
   };
 
   /**
@@ -44,6 +47,16 @@ define([
       .on('click', PreviewOverwrite.identifiers.sendToPublishStageAction, PreviewOverwrite.renderSendPageToPublishStageWindow)
       .on('click', PreviewOverwrite.identifiers.copyToClipboard, PreviewOverwrite.copyToClipboard)
     ;
+  };
+
+  /**
+   * Renders the staging buttons
+   *
+   * @param {String} buttons
+   */
+  PreviewOverwrite.renderStageButtons = function(buttons) {
+    PreviewOverwrite.elements.$stageButtonsContainer = $(PreviewOverwrite.identifiers.stageButtonsContainer);
+    PreviewOverwrite.elements.$stageButtonsContainer.html(buttons);
   };
 
 
