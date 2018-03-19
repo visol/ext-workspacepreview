@@ -25,6 +25,8 @@ define([
 
   var PreviewOverwrite = {
     identifiers: {
+      liveView: '#live-view',
+      discardRedirectAction: '[data-action="discard-redirect"]',
       stageButtonsContainer: '.t3js-stage-buttons',
       sendToPublishStageAction: '[data-action="send-to-publish-stage"]',
       copyToClipboard: '[data-action="copy-to-clipboard"]',
@@ -44,6 +46,7 @@ define([
    */
   PreviewOverwrite.registerEvents = function() {
     $(document)
+      .on('click', PreviewOverwrite.identifiers.discardRedirectAction, PreviewOverwrite.renderDiscardRedirectWindow)
       .on('click', PreviewOverwrite.identifiers.sendToPublishStageAction, PreviewOverwrite.renderSendPageToPublishStageWindow)
       .on('click', PreviewOverwrite.identifiers.copyToClipboard, PreviewOverwrite.copyToClipboard)
     ;
@@ -75,6 +78,61 @@ define([
     } catch (err) {
         console.log('Oops, unable to copy');
     }
+  };
+
+  /**
+   * Renders the discard window
+   *
+   * @private
+   */
+  PreviewOverwrite.renderDiscardRedirectWindow = function() {
+    var $modal = Modal.confirm(
+      TYPO3.lang['window.discardAll.title'],
+      TYPO3.lang['window.discardAll.message'],
+      Severity.warning,
+      [
+        {
+          text: TYPO3.lang['cancel'],
+          active: true,
+          btnClass: 'btn-default',
+          name: 'cancel',
+          trigger: function() {
+            $modal.modal('hide');
+          }
+        }, {
+        text: TYPO3.lang['ok'],
+        btnClass: 'btn-warning',
+        name: 'ok'
+      }
+      ]
+    );
+    $modal.on('button.clicked', function(e) {
+      if (e.target.name === 'ok') {
+        Workspaces.sendRemoteRequest([
+          Workspaces.generateRemoteActionsPayload('discardStagesFromPage', [TYPO3.settings.Workspaces.id]),
+          Workspaces.generateRemoteActionsPayload('updateStageChangeButtons', [TYPO3.settings.Workspaces.id])
+        ]).done(function(response) {
+          $modal.modal('hide');
+
+          PreviewOverwrite.elements.$liveView = $(PreviewOverwrite.identifiers.liveView);
+
+          var liveUrl = PreviewOverwrite.elements.$liveView.attr('src');
+
+          if (liveUrl.indexOf('newPage') > -1) {
+            // this page was not published before, so we must extract the page id and redirect
+            var queryString = {};
+            liveUrl.replace(
+              new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+              function($0, $1, $2, $3) { queryString[$1] = $3; }
+            );
+            location.href = '/index.php?id=' + queryString.id;
+          } else {
+            // this page is already visible in the frontend, therefore it is safe to redirect
+            location.href = liveUrl;
+          }
+        });
+      }
+    });
   };
 
   /**
