@@ -6,6 +6,12 @@
 			<trans-unit id="actionSendToStage" xml:space="preserve">
 				<source>Publish</source>
 			</trans-unit>
+			<trans-unit id="window.publishAll.title" xml:space="preserve">
+				<source>Publish all workspace version of current page.</source>
+			</trans-unit>
+			<trans-unit id="window.publishAll.message" xml:space="preserve">
+				<source>Publish this page?</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

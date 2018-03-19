@@ -7,6 +7,14 @@
 				<source>Publish</source>
 				<target>Veröffentlichen</target>
 			</trans-unit>
+			<trans-unit id="window.publishAll.title" xml:space="preserve">
+				<source>Publish all workspace version of current page.</source>
+				<target>Entwurfsversionen der aktuellen Seite veröffentlichen.</target>
+			</trans-unit>
+			<trans-unit id="window.publishAll.message" xml:space="preserve">
+				<source>Publish this page?</source>
+				<target>Diese Version veröffentlichen?</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -78,37 +78,57 @@ define([
   };
 
     /**
-     * Renders the "send page to stage" window
+     * Renders the "send page to publish stage" window
      *
      * @private
      */
     PreviewOverwrite.renderSendPageToPublishStageWindow = function() {
-        var $me = $(this),
-            actionName = 'sendPageToPublishStage';
+      var $me = $(this),
+        actionName = 'sendPageToPublishStage';
 
-        Workspaces.sendRemoteRequest(
-            Workspaces.generateRemoteActionsPayload(actionName, [TYPO3.settings.Workspaces.id])
-        ).done(function(response) {
-            var $modal = Workspaces.renderSendToStageWindow(response);
-            $modal.on('button.clicked', function(e) {
-                if (e.target.name === 'ok') {
-                    var $form = $(e.currentTarget).find('form'),
-                        serializedForm = $form.serializeObject();
+      Workspaces.sendRemoteRequest(
+        Workspaces.generateRemoteActionsPayload(actionName, [TYPO3.settings.Workspaces.id])
+      ).done(function(response) {
+        var $modal = Modal.confirm(
+          TYPO3.lang['window.publishAll.title'],
+          TYPO3.lang['window.publishAll.message'],
+          Severity.warning,
+          [
+            {
+              text: TYPO3.lang['cancel'],
+              active: true,
+              btnClass: 'btn-default',
+              name: 'cancel',
+              trigger: function() {
+                $modal.modal('hide');
+              }
+            }, {
+            text: TYPO3.lang['label_doaction_publish'],
+            btnClass: 'btn-warning',
+            name: 'ok'
+          }
+          ]
+        );
 
-                    serializedForm.affects = response[0].result.affects;
-                    serializedForm.stageId = $me.data('stageId');
+        $modal.on('button.clicked', function(e) {
+          if (e.target.name === 'ok') {
+            var $form = $(e.currentTarget).find('form'),
+              serializedForm = $form.serializeObject();
 
-                    Workspaces.sendRemoteRequest([
-                        Workspaces.generateRemoteActionsPayload('sentCollectionToStage', [serializedForm]),
-                        Workspaces.generateRemoteActionsPayload('updateStageChangeButtons', [TYPO3.settings.Workspaces.id])
-                    ]).done(function(response) {
-                        $modal.modal('hide');
+            serializedForm.affects = response[0].result.affects;
+            serializedForm.stageId = $me.data('stageId');
 
-                        Preview.renderStageButtons(response[1].result);
-                    });
-                }
+            Workspaces.sendRemoteRequest([
+              Workspaces.generateRemoteActionsPayload('sentCollectionToStage', [serializedForm]),
+              Workspaces.generateRemoteActionsPayload('updateStageChangeButtons', [TYPO3.settings.Workspaces.id])
+            ]).done(function(response) {
+              $modal.modal('hide');
+
+              PreviewOverwrite.renderStageButtons(response[1].result);
             });
+          }
         });
+      });
     };
 
   /**
