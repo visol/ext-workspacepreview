@@ -77,59 +77,59 @@ define([
     }
   };
 
-    /**
-     * Renders the "send page to publish stage" window
-     *
-     * @private
-     */
-    PreviewOverwrite.renderSendPageToPublishStageWindow = function() {
-      var $me = $(this),
-        actionName = 'sendPageToPublishStage';
+  /**
+   * Renders the "send page to publish stage" window
+   *
+   * @private
+   */
+  PreviewOverwrite.renderSendPageToPublishStageWindow = function() {
+    var $me = $(this),
+      actionName = 'sendPageToPublishStage';
 
-      Workspaces.sendRemoteRequest(
-        Workspaces.generateRemoteActionsPayload(actionName, [TYPO3.settings.Workspaces.id])
-      ).done(function(response) {
-        var $modal = Modal.confirm(
-          TYPO3.lang['window.publishAll.title'],
-          TYPO3.lang['window.publishAll.message'],
-          Severity.warning,
-          [
-            {
-              text: TYPO3.lang['cancel'],
-              active: true,
-              btnClass: 'btn-default',
-              name: 'cancel',
-              trigger: function() {
-                $modal.modal('hide');
-              }
-            }, {
-            text: TYPO3.lang['label_doaction_publish'],
-            btnClass: 'btn-warning',
-            name: 'ok'
-          }
-          ]
-        );
-
-        $modal.on('button.clicked', function(e) {
-          if (e.target.name === 'ok') {
-            var $form = $(e.currentTarget).find('form'),
-              serializedForm = $form.serializeObject();
-
-            serializedForm.affects = response[0].result.affects;
-            serializedForm.stageId = $me.data('stageId');
-
-            Workspaces.sendRemoteRequest([
-              Workspaces.generateRemoteActionsPayload('sentCollectionToStage', [serializedForm]),
-              Workspaces.generateRemoteActionsPayload('updateStageChangeButtons', [TYPO3.settings.Workspaces.id])
-            ]).done(function(response) {
+    Workspaces.sendRemoteRequest(
+      Workspaces.generateRemoteActionsPayload(actionName, [TYPO3.settings.Workspaces.id])
+    ).done(function(response) {
+      var $modal = Modal.confirm(
+        TYPO3.lang['window.publishAll.title'],
+        TYPO3.lang['window.publishAll.message'],
+        Severity.warning,
+        [
+          {
+            text: TYPO3.lang['cancel'],
+            active: true,
+            btnClass: 'btn-default',
+            name: 'cancel',
+            trigger: function() {
               $modal.modal('hide');
+            }
+          }, {
+          text: TYPO3.lang['label_doaction_publish'],
+          btnClass: 'btn-warning',
+          name: 'ok'
+        }
+        ]
+      );
 
-              PreviewOverwrite.renderStageButtons(response[1].result);
-            });
-          }
-        });
+      $modal.on('button.clicked', function(e) {
+        if (e.target.name === 'ok') {
+          var $form = $(e.currentTarget).find('form'),
+            serializedForm = $form.serializeObject();
+
+          serializedForm.affects = response[0].result.affects;
+          serializedForm.stageId = $me.data('stageId');
+
+          Workspaces.sendRemoteRequest([
+            Workspaces.generateRemoteActionsPayload('sentCollectionToStage', [serializedForm]),
+            Workspaces.generateRemoteActionsPayload('updateStageChangeButtons', [TYPO3.settings.Workspaces.id])
+          ]).done(function(response) {
+            $modal.modal('hide');
+
+            PreviewOverwrite.renderStageButtons(response[1].result);
+          });
+        }
       });
-    };
+    });
+  };
 
   /**
    * Serialize a form to a JavaScript object
