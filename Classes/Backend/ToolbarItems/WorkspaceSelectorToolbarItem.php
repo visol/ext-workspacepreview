@@ -28,6 +28,17 @@ class WorkspaceSelectorToolbarItem extends \TYPO3\CMS\Workspaces\Backend\Toolbar
 {
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $pageRenderer = $this->getPageRenderer();
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Workspacepreview/Toolbar/WorkspacesMenuOverride');
+    }
+
+    /**
      * Get drop down
      *
      * @return string
