@@ -114,22 +114,7 @@ define([
         ]).done(function(response) {
           $modal.modal('hide');
 
-          PreviewOverwrite.elements.$liveView = $(PreviewOverwrite.identifiers.liveView);
-
-          var liveUrl = PreviewOverwrite.elements.$liveView.attr('src');
-
-          if (liveUrl.indexOf('newPage') > -1) {
-            // this page was not published before, so we must extract the page id and redirect
-            var queryString = {};
-            liveUrl.replace(
-              new RegExp("([^?=&]+)(=([^&]*))?", "g"),
-              function($0, $1, $2, $3) { queryString[$1] = $3; }
-            );
-            location.href = '/index.php?id=' + queryString.id;
-          } else {
-            // this page is already visible in the frontend, therefore it is safe to redirect
-            location.href = liveUrl;
-          }
+          PreviewOverwrite.redirectToLiveUrl();
         });
       }
     });
@@ -182,11 +167,35 @@ define([
           ]).done(function(response) {
             $modal.modal('hide');
 
-            PreviewOverwrite.renderStageButtons(response[1].result);
+            PreviewOverwrite.redirectToLiveUrl();
           });
         }
       });
     });
+  };
+
+  /**
+   * Determine and redirect to live URL
+   *
+   * @private
+   */
+  PreviewOverwrite.redirectToLiveUrl = function() {
+    PreviewOverwrite.elements.$liveView = $(PreviewOverwrite.identifiers.liveView);
+
+    var liveUrl = PreviewOverwrite.elements.$liveView.attr('src');
+
+    if (liveUrl.indexOf('newPage') > -1) {
+      // this page was not published before, so we must extract the page id and redirect
+      var queryString = {};
+      liveUrl.replace(
+        new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+        function($0, $1, $2, $3) { queryString[$1] = $3; }
+      );
+      location.href = '/index.php?id=' + queryString.id;
+    } else {
+      // this page is already visible in the frontend, therefore it is safe to redirect
+      location.href = liveUrl;
+    }
   };
 
   /**
