@@ -36,6 +36,12 @@ define([
   };
 
   /**
+   * Override containerSelector of parent class because it is used to check the correct workspace on change
+   * @type {string}
+   */
+  WorkspacesMenu.options.containerSelector = '#visol-workspacepreview-backend-toolbaritems-workspaceselectortoolbaritem';
+
+  /**
    * registers event listeners
    */
   WorkspacesMenu.initializeEvents = function() {
@@ -48,7 +54,6 @@ define([
 
     // observe all clicks on workspace links in the menu
     $(WorkspacesMenuOverride.options.containerSelector).on('click', WorkspacesMenu.options.menuItemSelector, function(evt) {
-      console.log('click');
       evt.preventDefault();
       WorkspacesMenu.switchWorkspace($(this).data('workspaceid'));
     });
