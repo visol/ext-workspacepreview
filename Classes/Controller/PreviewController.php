@@ -27,9 +27,5 @@ class PreviewController extends \TYPO3\CMS\Workspaces\Controller\PreviewControll
     protected function initializeIndexAction()
     {
         $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/Workspacepreview/PreviewOverwrite');
-
-        $cssFile = 'EXT:workspacepreview/Resources/Public/Stylesheets/preview.css';
-        $cssFile = GeneralUtility::getFileAbsFileName($cssFile);
-        $this->pageRenderer->addCssFile(PathUtility::getAbsoluteWebPath($cssFile));
     }
 }

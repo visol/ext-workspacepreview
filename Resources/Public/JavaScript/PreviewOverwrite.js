@@ -29,7 +29,7 @@ define([
       discardRedirectAction: '[data-action="discard-redirect"]',
       stageButtonsContainer: '.t3js-stage-buttons',
       sendToPublishStageAction: '[data-action="send-to-publish-stage"]',
-      copyToClipboard: '[data-action="copy-to-clipboard"]',
+      previewLinksButton: '.t3js-preview-link',
     },
     elements: {}
   };
@@ -49,7 +49,10 @@ define([
       .on('click', PreviewOverwrite.identifiers.discardRedirectAction, PreviewOverwrite.renderDiscardRedirectWindow)
       .on('click', PreviewOverwrite.identifiers.sendToPublishStageAction, PreviewOverwrite.renderSendPageToPublishStageWindow)
       .on('click', PreviewOverwrite.identifiers.copyToClipboard, PreviewOverwrite.copyToClipboard)
+      .on('click', PreviewOverwrite.identifiers.previewLinksButton, PreviewOverwrite.generatePreviewLinks);
     ;
+
+
   };
 
   /**
@@ -62,23 +65,52 @@ define([
     PreviewOverwrite.elements.$stageButtonsContainer.html(buttons);
   };
 
-
   /**
-   * Copy the content of the current element to clipboard
-   *
-   * @private
+   * Fetches and renders available preview links
+   * Credits: EXT:workspaces/Resources/Public/JavaScript/Backend.js
    */
-  PreviewOverwrite.copyToClipboard = function() {
-    var $me = $(this);
+  PreviewOverwrite.generatePreviewLinks = function() {
+    Workspaces.sendRemoteRequest(
+      Workspaces.generateRemoteActionsPayload('generateWorkspacePreviewLinksForAllLanguages', [
+        TYPO3.settings.Workspaces.id
+      ])
+    ).done(function(response) {
+      var result = response[0].result,
+        $list = $('<dl />');
 
-    $me.select();
+      $.each(result, function(language, url) {
+        $list.append(
+          $('<dt />').text(language),
+          $('<dd />').append(
+            $('<a />', {href: url, target: '_blank'}).text(url)
+          )
+        );
+      });
 
-    try {
-        var successful = document.execCommand('copy');
-    } catch (err) {
-        console.log('Oops, unable to copy');
-    }
+      Modal.show(
+        TYPO3.lang['previewLink'],
+        $list,
+        Severity.info,
+        [{
+          text: TYPO3.lang['ok'],
+          active: true,
+          btnClass: 'btn-info',
+          name: 'ok',
+          trigger: function() {
+            Modal.currentModal.trigger('modal-dismiss');
+          }
+        }],
+        ['modal-inner-scroll']
+      );
+    });
   };
+
+
+
+
+
+
+
 
   /**
    * Renders the discard window
