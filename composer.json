@@ -9,7 +9,7 @@
 		"issues": "https://github.com/visol/ext-workspacepreview/issues"
 	},
 	"require": {
-		"typo3/cms-core": ">=8.7.0,<9.0"
+		"typo3/cms-core": "^10.4.11"
 	},
 	"autoload": {
 		"psr-4": {
