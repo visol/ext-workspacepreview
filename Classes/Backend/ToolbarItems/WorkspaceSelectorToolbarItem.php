@@ -14,12 +14,8 @@ namespace Visol\Workspacepreview\Backend\ToolbarItems;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
-use TYPO3\CMS\Workspaces\Service\WorkspaceService;
 
 /**
  * Class to render the workspace selector
@@ -45,6 +41,8 @@ class WorkspaceSelectorToolbarItem extends \TYPO3\CMS\Workspaces\Backend\Toolbar
      */
     public function getDropDown()
     {
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+
         $topItem = null;
         $additionalItems = [];
         $backendUser = $this->getBackendUser();
@@ -55,7 +53,7 @@ class WorkspaceSelectorToolbarItem extends \TYPO3\CMS\Workspaces\Backend\Toolbar
             $item = [
                 'isActive'    => $workspaceId === $activeWorkspace,
                 'label'       => $label,
-                'link'        => BackendUtility::getModuleUrl('main', ['changeWorkspace' => $workspaceId]),
+                'link'        => $uriBuilder->buildUriFromRoute('main', ['changeWorkspace' => $workspaceId]),
                 'workspaceId' => $workspaceId
             ];
             if ($topItem === null) {
